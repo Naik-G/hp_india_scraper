@@ -5,6 +5,8 @@ Scraping programme
 Scraping programme
 https://www.hp.com/in-en/shop/laptops-tablets.html
 
+open in senium -> page source ->soup ki help se target krna
+
 
 amd processors
 {
@@ -19,3 +21,5 @@ amd processors
 'rating':
 
 }
+
+scrap all pages and extract only amd information
