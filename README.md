@@ -8,6 +8,7 @@ https://www.hp.com/in-en/shop/laptops-tablets.html
 
 amd processors
 {
+
 'product_name':
 'processor_model':
 'processor_string':
@@ -16,4 +17,5 @@ amd processors
 'product_price':
 'review':
 'rating':
+
 }
