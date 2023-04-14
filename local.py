@@ -1,2 +1,0 @@
-def cal():
-    pass
