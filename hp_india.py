@@ -76,6 +76,8 @@ def proccesser(soup):
     item_id = soup.find_all('div', class_='product-sku stellar-body__extra-small')
     mrp_div = soup.find_all('div', class_='suggest-retail-price simple')
     price_div = soup.find_all('span', class_='price-wrapper price-including-tax')
+    reviews = soup.find('meta', attrs={'itemprop': 'reviewCount'})
+    ratings = soup.find('div', attrs={'itemprop':'ratingValue'})
     
         
     for name, processors_name ,links, orignal_price, complete_price, id\
