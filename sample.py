@@ -12,16 +12,21 @@ list_of_review = []
 
 
 
-dl = soup.find_all('dd')
-for h4 in dl:
-    # print(h4)
-    proc = h4.find_all('h4' , class_='value')
-    for item in proc:
-        # print(item)
-        if "AMD" in item.text:
-            x = item.text.split(" ")[3]
-            print(x)
-            # amd_dict['processor_model'].append(item.text.split(" ")[3])
+dl = soup.select('dd[Data-th]')
+proc = dl[1].find('h4' , class_='value').text.strip()
+# print(dl[1])
+print(proc.split(" ")[3])
+# for item in proc:
+# for h4 in dl:
+#     # print(h4)
+#     proc = h4.find_all('h4' , class_='value')
+#     for item in proc:
+#         # print(item)
+#         print(item.text.strip())
+#         # if "AMD" in item.text:
+#         #     x = item.text.split(" ")[3]
+#         #     print(x)
+#             # amd_dict['processor_model'].append(item.text.split(" ")[3])
 
 
 # reviews = soup.find("div",class_="iSvbrG").text

@@ -36,8 +36,8 @@ def main():
 
     total_page_link = WebDriverWait(driver,10).until(ec.element_to_be_clickable((By.XPATH,'//*[@id="category.product.list"]/div[4]/div[2]/ul/li[9]/a')))
     total_page = total_page_link.get_attribute('href')
-    # page = int(total_page.split('=')[1])
-    page = 3
+    page = int(total_page.split('=')[1])
+    # page = 3
 
     for urls in range(1,page+1):
         list_of_link.append('https://www.hp.com/in-en/shop/laptops-tablets.html'+'?p='+str(urls))
@@ -122,13 +122,13 @@ def proccesser(soup):
         print('complete')
         
 
-    print(amd_dict['product_name'])
-    print(amd_dict['processor_string'])
-    print(amd_dict['processor_model'])
-    print(amd_dict['product_link'])
-    print(amd_dict['item_id'])
-    print(amd_dict['product_mrp'])
-    print(amd_dict['product_price'])
+    # print(amd_dict['product_name'])
+    # print(amd_dict['processor_string'])
+    # print(amd_dict['processor_model'])
+    # print(amd_dict['product_link'])
+    # print(amd_dict['item_id'])
+    # print(amd_dict['product_mrp'])
+    # print(amd_dict['product_price'])
 
 
 def perticular_item_tabbed(item_url):
@@ -137,24 +137,10 @@ def perticular_item_tabbed(item_url):
     page_source = driver.page_source
     soup = BeautifulSoup(page_source, "lxml")
 
-    proc = soup.find_all('h4' , class_='value')
-    for item in proc:
-        if "AMD" in item.text:
-            x = item.text.split(" ")[3]
-            print(x)
-            amd_dict['processor_model'].append(item.text.split(" ")[3])
-
-    # product-spec-attribute
-
-    dl = soup.find_all('dd')
-    for h4 in dl:
-        proc = h4.find_all('h4' , class_='value')
-        for item in proc:
-            if "AMD" in item.text:
-                x = item.text.split(" ")[3]
-                print(x)
-                amd_dict['processor_model'].append(item.text.split(" ")[3])
-
+    dl = soup.select('dd[Data-th]')
+    proc = dl[1].find('h4' , class_='value').text.strip()
+    amd_dict['processor_model'].append(proc.split(" ")[3])
+    
 
 
 def dict_to_excel():
@@ -170,34 +156,6 @@ def dict_to_excel():
 
 
 main()
-# dict_to_excel()
-
-
-
-
-
-
-
-# def currupt:
-#     WebDriverWait(driver,10).until(ec.element_to_be_clickable((By.XPATH,'//*[@id="category.product.list"]/div[4]/div[2]/ul/li[8]/a/div'))).click()
-#     list_of_link.append(driver.current_url)
-#     getlinks()
-#     page_source = driver.page_source
-#     driver.close()
-#     proccesser(page_source)
-    
-# def getlinks():
-#     total_page_link = WebDriverWait(driver,10).until(ec.element_to_be_clickable((By.XPATH,'//*[@id="category.product.list"]/div[4]/div[2]/ul/li[9]/a')))
-#     total_page = total_page_link.get_attribute('href')
-#     page = total_page.split('=')[1]
-
-#     for urls in range(1,8):
-#         # driver.refresh()
-#         # WebDriverWait(driver,10).until(ec.element_to_be_clickable((By.XPATH,'//*[@id="category.product.list"]/div[4]/div[2]/ul/li[8]/a/div'))).click()
-#         list_of_link.append(driver.current_url+"?p="+str(urls))
-#         proccesser()
-
-
-
+dict_to_excel()
 
 
